@@ -18,7 +18,6 @@ def reverse_linked_list(head):
     return prev
 
 
-
 def cycle_linked_list(head):
     slow = head
     fast = head.next

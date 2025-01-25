@@ -6,5 +6,5 @@ def sliding_window(some_collection):
     for end in range(len(some_collection)):
 
         window_size = end - begin + 1
-        if ... # window condition
-            begin += 1        
+        if True: # window condition
+            begin += 1
