@@ -1,6 +1,5 @@
-from collections import defaultdict
-def threeSum(nums: list[int]) -> list[list[int]]:
-    nums = sorted(nums)
+def three_sum(nums: list[int]) -> list[list[int]]:
+    nums.sort()
     result = []
     n = len(nums)
 
@@ -23,7 +22,7 @@ def threeSum(nums: list[int]) -> list[list[int]]:
 
     return result
 
-print(threeSum([-1,0,1]))
+print(three_sum([-1,0,1]))
 
 
-print(type(threeSum))
+print(type(three_sum))
