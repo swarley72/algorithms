@@ -4,21 +4,30 @@ def three_sum(nums: list[int]) -> list[list[int]]:
     n = len(nums)
 
     for i in range(n):
+        # пропускаем дубликаты
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
         target = -nums[i]
-        left = i + 1
-        right = n - 1
+        l = i + 1
+        r = n - 1
 
-        while left < right:
-            current_sum = nums[left] + nums[right]
+        while l < r:
+            current_sum = nums[l] + nums[r]
             
             if current_sum < target:
-                left += 1
+                l += 1
             elif current_sum > target:
-                right -= 1
+                r -= 1
             else:
-                result.append([nums[left], nums[right], target])
-                left += 1
-                right -= 1
+                result.append([nums[l], nums[r], nums[i]])
+                l += 1
+                r -= 1
+                # пропускаем дубликаты слева
+                while l < r and nums[l] == nums[l - 1]:
+                    l += 1
+                # пропускаем дубликаты справа
+                while l < r and nums[r] == nums[r + 1]:
+                    r += 1
 
     return result
 
