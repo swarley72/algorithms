@@ -1,4 +1,4 @@
-package main
+import "strings"
 
 type Stack[T any] []T
 
@@ -19,7 +19,16 @@ func (s *Stack[T]) Push(val T) {
 	*s = append(*s, val)
 }
 
-func main() {
+func removeDuplicates(s string) string {
 	stack := Stack[string]{}
-	stack.Pop()
+
+	for _, char := range s {
+		if len(stack) != 0 && stack.Top() == string(char) {
+			stack.Pop()
+		} else {
+			stack.Push(string(char))
+		}
+	}
+
+	return strings.Join(stack, "")
 }
