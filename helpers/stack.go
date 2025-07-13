@@ -13,6 +13,6 @@ func (s Stack[T]) Top() T {
 }
 
 // добавляет элемент в стэк
-func (s *Stack[T]) Push(val T) {
+func (s *Stack[T]) Append(val T) {
 	*s = append(*s, val)
 }
