@@ -1,5 +1,3 @@
-import "strings"
-
 type Stack[T any] []T
 
 // удаляет и возвращает последний элемент стека
