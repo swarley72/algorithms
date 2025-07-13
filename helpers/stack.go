@@ -1,5 +1,3 @@
-package main
-
 type Stack[T any] []T
 
 // удаляет и возвращает последний элемент стека
@@ -17,9 +15,4 @@ func (s Stack[T]) Top() T {
 // добавляет элемент в стэк
 func (s *Stack[T]) Push(val T) {
 	*s = append(*s, val)
-}
-
-func main() {
-	stack := Stack[string]{}
-	stack.Pop()
 }
