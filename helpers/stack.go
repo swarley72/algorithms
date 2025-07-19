@@ -16,3 +16,8 @@ func (s Stack[T]) Top() T {
 func (s *Stack[T]) Append(val T) {
 	*s = append(*s, val)
 }
+
+func NewStack[T any]() Stack[T] {
+	return Stack[T]{}
+}
+
