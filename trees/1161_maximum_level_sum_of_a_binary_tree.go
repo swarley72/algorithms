@@ -1,3 +1,46 @@
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+func maxLevelSum(root *TreeNode) int {
+	result := 1
+	currentMax := root.Val
+
+	queue := makeDeque[Item]([]Item{Item{root, 1}})
+
+	for queue.Size > 0 {
+		levelSize := queue.Size
+
+		tmpSum := 0
+		var currentLevel int
+		for i := 0; i < levelSize; i++ {
+			item := queue.PopLeft()
+			node := item.Node
+			currentLevel = item.Level
+			tmpSum += node.Val
+
+			if node.Left != nil {
+				queue.Append(Item{node.Left, currentLevel + 1})
+			}
+			if node.Right != nil {
+				queue.Append(Item{node.Right, currentLevel + 1})
+			}
+		}
+		if tmpSum > currentMax {
+			currentMax = tmpSum
+			result = currentLevel
+		}
+	}
+
+	return result
+}
+
+type Item struct {
+	Node  *TreeNode
+	Level int
+}
 
 func makeDeque[T any](items []T) *Deque[T] {
 	head := &QueueNode[T]{}
