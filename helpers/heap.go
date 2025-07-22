@@ -17,6 +17,14 @@ func (h *MinHeap) Pop() interface{} {
 	return x
 }
 
+func (h *MinHeap) PushItem(x int) {
+	heap.Push(h, x)
+}
+
+func (h *MinHeap) PopItem() int {
+	return heap.Pop(h).(int)
+}
+
 // MAX HEAP INT
 type MaxHeap []int
 
@@ -34,6 +42,14 @@ func (h *MaxHeap) Pop() interface{} {
 	x := old[n-1]
 	*h = old[0 : n-1]
 	return x
+}
+
+func (h *MaxHeap) PushItem(x int) {
+	heap.Push(h, x)
+}
+
+func (h *MaxHeap) PopItem() int {
+	return heap.Pop(h).(int)
 }
 
 // MIN HEAP STRUCT
