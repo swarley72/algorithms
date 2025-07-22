@@ -49,37 +49,52 @@ func main() {
 	personHeap := NewMinHeap[Person](func(a, b Person) bool {
 		return a.Age < b.Age
 	})
+	// Создаем MaxHeap для Person по возрасту
+	personHeap := NewHeap[Person](func(a, b Person) bool {
+		return a.Age > b.Age
+	})
 	heap.Init(personHeap)
 
 	// Добавляем элементы
-	heap.Push(personHeap, Person{"Alice", 30})
+	personHeap.Push(Person{"Alice", 30})
+
+	// Достаем элементы
+	personHeap.PopItem()
 }
 
 // ===========================================================
-type MinHeap[T any] struct {
+type Heap[T any] struct {
 	data []T
 	less func(T, T) bool
 }
 
-func NewMinHeap[T any](less func(T, T) bool) *MinHeap[T] {
-	return &MinHeap[T]{
+func NewHeap[T any](less func(T, T) bool) *Heap[T] {
+	return &Heap[T]{
 		data: make([]T, 0),
 		less: less,
 	}
 }
 
-func (h MinHeap[T]) Len() int           { return len(h.data) }
-func (h MinHeap[T]) Less(i, j int) bool { return h.less(h.data[i], h.data[j]) }
-func (h MinHeap[T]) Swap(i, j int)      { h.data[i], h.data[j] = h.data[j], h.data[i] }
+func (h Heap[T]) Len() int           { return len(h.data) }
+func (h Heap[T]) Less(i, j int) bool { return h.less(h.data[i], h.data[j]) }
+func (h Heap[T]) Swap(i, j int)      { h.data[i], h.data[j] = h.data[j], h.data[i] }
 
-func (h *MinHeap[T]) Push(x interface{}) {
+func (h *Heap[T]) Push(x interface{}) {
 	h.data = append(h.data, x.(T))
 }
 
-func (h *MinHeap[T]) Pop() interface{} {
+func (h *Heap[T]) Pop() interface{} {
 	old := h.data
 	n := len(old)
 	x := old[n-1]
 	h.data = old[0 : n-1]
 	return x
+}
+
+func (h *Heap[T]) PushItem(x T) {
+	heap.Push(h, x)
+}
+
+func (h *Heap[T]) PopItem() T {
+	return heap.Pop(h).(T)
 }
