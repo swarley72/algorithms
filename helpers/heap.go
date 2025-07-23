@@ -1,4 +1,7 @@
 // MIN HEAP INT
+// ИСПОЛЬЗОВАНИЕ
+// minHeap = MinHeap{} || minHeap = MinHeap(slice)
+// heap.Init(&minHeap)
 type MinHeap []int
 
 func (h MinHeap) Len() int           { return len(h) }
@@ -26,6 +29,9 @@ func (h *MinHeap) PopItem() int {
 }
 
 // MAX HEAP INT
+// ИСПОЛЬЗОВАНИЕ
+// minHeap = MinHeap{} || minHeap = MinHeap(slice)
+// heap.Init(&minHeap)
 type MaxHeap []int
 
 func (h MaxHeap) Len() int           { return len(h) }
