@@ -1,10 +1,11 @@
 def isSubsequence(s: str, t: str) -> bool:
-        p = 0
-        for i in range(len(s)):
-            # if p == len(t):
-            #     return True
-            if s[i] == t[p]:
-                p += 1
+        p1 = 0
 
-        return p == len(t)
-
+        for c in t:
+            # если уже вышли за границу
+            if p1 == len(s):
+                return True
+            if c == s[p1]:
+                p1 += 1
+        
+        return p1 == len(s)
