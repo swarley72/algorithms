@@ -1,5 +1,6 @@
 # playground
 from collections import defaultdict
 
-print(1994 // 1000)
-print(1994 % 1000)
+a = [1,2, 3, 4]
+print(a[3:], a[:3])
+print(3 % 7)
