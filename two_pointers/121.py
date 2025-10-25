@@ -11,3 +11,17 @@ def maxProfit(prices: list[int]) -> int:
 		r += 1
 
 	return res
+
+
+
+def maxProfit(self, prices: list[int]) -> int:
+	res = 0
+
+	current_min = prices[0]
+
+	for i in range(1, len(prices)):
+		price = prices[i]
+		res = max(res, price - current_min) 
+		current_min = min(current_min, price)
+
+	return res
