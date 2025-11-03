@@ -10,6 +10,20 @@
 def decode_string(s: str) -> str: ...
 
 
+assert decode_string("3AB2(Z3K)") == "AAABZKKKZKKK"
+assert decode_string("2(Z3(KA))") == "ZKAKAKAZKAKAKA"
+assert decode_string("A") == "A"
+assert decode_string("2(A)B") == "AAB"
+assert decode_string("2(3A)") == "AAAAAA"
+assert decode_string("2(2(A))") == "AAAA"
+assert decode_string("2()") == ""
+assert decode_string("3A2B4C") == "AAABBCCCC"
+assert decode_string("2(AB)3C") == "ABABCCC"
+assert decode_string("2(A2B)") == "ABBABB"
+assert decode_string("3(A)2(B)") == "AAABB"
+assert decode_string("AB3C") == "ABCCC"
+
+
 def decode_string_success(s: str) -> str:
     stack = []
     i = 0
@@ -36,17 +50,3 @@ def decode_string_success(s: str) -> str:
             i += 1
 
     return "".join(stack)
-
-
-assert decode_string("3AB2(Z3K)") == "AAABZKKKZKKK"
-assert decode_string("2(Z3(KA))") == "ZKAKAKAZKAKAKA"
-assert decode_string("A") == "A"
-assert decode_string("2(A)B") == "AAB"
-assert decode_string("2(3A)") == "AAAAAA"
-assert decode_string("2(2(A))") == "AAAA"
-assert decode_string("2()") == ""
-assert decode_string("3A2B4C") == "AAABBCCCC"
-assert decode_string("2(AB)3C") == "ABABCCC"
-assert decode_string("2(A2B)") == "ABBABB"
-assert decode_string("3(A)2(B)") == "AAABB"
-assert decode_string("AB3C") == "ABCCC"

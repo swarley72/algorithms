@@ -2,22 +2,7 @@
 # которые не встречаются во втором
 
 
-def get_diff(arr1: list[int], arr2: list[int]):
-    l, r = 0, 0
-    res = []
-    while l < len(arr1) and r < len(arr2):
-        if arr1[l] == arr2[r]:
-            l += 1
-            r += 1
-        elif arr1[l] < arr2[r]:
-            res.append(arr1[l])
-            l += 1
-        else:
-            r += 1
-
-    while l < len(arr1):
-        res.append(arr1[l])
-    return res
+def get_diff(arr1: list[int], arr2: list[int]): ...
 
 
 assert get_diff([1, 2, 3, 5], [1, 3, 4]) == [2, 5]
@@ -50,3 +35,21 @@ assert get_diff([1, 2, 3, 4, 5, 6, 7], [2, 4, 6]) == [1, 3, 5, 7]  # через 
 assert get_diff([1, 2, 3], [0]) == [1, 2, 3]  # второй меньше всех
 assert get_diff([1, 2, 3], [10]) == [1, 2, 3]  # второй больше всех
 assert get_diff([5, 10, 15], [1, 2, 3, 4]) == [5, 10, 15]  # второй весь меньше
+
+
+def get_diff_success(arr1: list[int], arr2: list[int]):
+    l, r = 0, 0
+    res = []
+    while l < len(arr1) and r < len(arr2):
+        if arr1[l] == arr2[r]:
+            l += 1
+            r += 1
+        elif arr1[l] < arr2[r]:
+            res.append(arr1[l])
+            l += 1
+        else:
+            r += 1
+
+    while l < len(arr1):
+        res.append(arr1[l])
+    return res
