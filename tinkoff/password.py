@@ -15,7 +15,32 @@
 from collections import deque
 
 
-def get_moves(grid: list[list[int]], password: list[int]):
+def get_moves(grid: list[list[int]], password: list[int]): ...
+
+
+assert (
+    get_moves(
+        [
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 11, 12],
+        ],
+        [1, 9, 3, 7],
+    )
+) == 5
+
+assert get_moves([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [1, 5, 9]) == 2
+assert get_moves([[1, 2, 3]], [2]) == 0
+assert (
+    get_moves(
+        [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]], [1, 16, 13, 4]
+    )
+    == 9
+)
+assert get_moves([[1, 2, 3, 4, 5]], [1, 5, 3]) == 6
+
+
+def get_moves_success(grid: list[list[int]], password: list[int]):
     if not password:
         return 0
     n = len(grid)
@@ -59,25 +84,3 @@ def get_moves(grid: list[list[int]], password: list[int]):
                     queue.append(((row, col), steps + 1))
                     visited.add((row, col))
     return res
-
-
-assert (
-    get_moves(
-        [
-            [1, 2, 3, 4],
-            [5, 6, 7, 8],
-            [9, 10, 11, 12],
-        ],
-        [1, 9, 3, 7],
-    )
-) == 5
-
-assert get_moves([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [1, 5, 9]) == 2
-assert get_moves([[1, 2, 3]], [2]) == 0
-assert (
-    get_moves(
-        [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]], [1, 16, 13, 4]
-    )
-    == 9
-)
-assert get_moves([[1, 2, 3, 4, 5]], [1, 5, 3]) == 6

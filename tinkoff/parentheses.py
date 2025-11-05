@@ -7,38 +7,45 @@
 # Если нельзя, то вывести -1. Примеры:
 
 
-def valid_parentheses(seq: str) -> int:
-    # Находим все незакрытые "(" и лишние ")"
+def valid_parentheses(s: str) -> int:
+    invalid_idx = None
     stack = []
-    replace_idx = -1
-    replace_used = False
 
-    for i, s in enumerate(seq):
-        if s == "(":
-            stack.append((s, i))
+    for i, n in enumerate(s):
+        if n == "(":
+            stack.append((n, i))
         else:
-            if not stack:
-                if not replace_used:
-                    stack.append(("*", i))
-                    replace_idx = i
+            if stack:
+                prev, _ = stack.pop()
+                if prev == "(":
+                    continue
+                elif invalid_idx is None:
+                    invalid_idx = i
                 else:
                     return -1
             else:
-                last, _ = stack.pop()
-                if last == "(":
-                    continue
-                elif last == "*" and not replace_used:
-                    replace_used = True
-                    continue
+                if invalid_idx is None:
+                    invalid_idx = i
+                    stack.append(("(", i))
                 else:
                     return -1
-    if len(stack) == 2 and not replace_used:
-        return stack[-1][1]
-
-    if len(stack) > 0:
+    # Если последовательность валидна
+    if len(stack) == 0 and invalid_idx is None:
         return -1
-
-    return replace_idx
+    # Если дошли сюда значит была одна замена
+    if len(stack) == 0:
+        return invalid_idx
+    # Если в стеке одна открывающая скобка значит точно невалидная
+    if len(stack) == 1:
+        return -1
+    # Если в стеке больше 2 открывающих заначит точно невалидная
+    if len(stack) > 2:
+        return -1
+    # Если в стеке две открывающие и мы уже использовали замену то точно не валидная
+    if invalid_idx is not None:
+        return -1
+    # Если дошли до сюда значит в стеке 2 открывающие
+    return stack[-1][1]
 
 
 assert valid_parentheses("()))") == 2
@@ -53,5 +60,5 @@ assert valid_parentheses("(()") == -1  # лишняя ( в начале
 assert valid_parentheses("))") == 0  # две лишние )
 assert valid_parentheses("((((") == -1  # четыре лишние (
 assert valid_parentheses(")(") == -1  #
-# assert valid_parentheses("))((") == -1  # две ошибки
-# assert valid_parentheses("(()())") == -1  # валидная
+assert valid_parentheses("))((") == -1  # две ошибки
+assert valid_parentheses("(())") == -1  # две ошибки

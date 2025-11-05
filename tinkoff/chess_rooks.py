@@ -21,6 +21,10 @@
 def max_dead_sum(board: list[int]): ...
 
 
+assert max_dead_sum([[1, 2, 3], [3, 4, 1], [3, 5, 2]]) == 16
+assert max_dead_sum([[1, 2, 3, 4]]) == 10
+
+
 def max_dead_sum_success(board: list[int]):
     n = len(board)
     m = len(board[0])
@@ -39,7 +43,3 @@ def max_dead_sum_success(board: list[int]):
             max_sum = max(max_sum, current_sum)
 
     return max_sum
-
-
-assert max_dead_sum_success([[1, 2, 3], [3, 4, 1], [3, 5, 2]]) == 16
-assert max_dead_sum_success([[1, 2, 3, 4]]) == 10
