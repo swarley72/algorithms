@@ -2,7 +2,7 @@
 # которые не встречаются во втором
 
 
-def get_diff(arr1: list[int], arr2: list[int]): ...
+def get_diff(arr1: list[int], arr2: list[int]) -> list[int]: ...
 
 
 assert get_diff([1, 2, 3, 5], [1, 3, 4]) == [2, 5]

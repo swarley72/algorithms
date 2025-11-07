@@ -20,18 +20,16 @@ def five_success(guess: str, word: str):
 
     counter = Counter(word)
     res = ""
-    for i in range(5):
-        if word[i] == guess[i] and word[i] in counter:
-            res += "+"
-            counter[word[i]] -= 1
-            if counter[word[i]] == 0:
-                del counter[word[i]]
-        elif guess[i] in counter:
-            res += "*"
+
+    for i in range(len(guess)):
+        if guess[i] in counter:
+            if guess[i] == word[i]:
+                res += "+"
+            else:
+                res += "*"
             counter[guess[i]] -= 1
             if counter[guess[i]] == 0:
                 del counter[guess[i]]
         else:
             res += "-"
-
     return res

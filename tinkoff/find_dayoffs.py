@@ -6,7 +6,16 @@
 # прерываться рабочими днями
 
 
-def find_dayoffs(k: int, days: list[int]) -> int:
+def find_dayoffs(k: int, days: list[int]) -> int: ...
+
+
+assert find_dayoffs(2, [0, 0, 0, 0, 1, 0, 0]) == 7
+assert find_dayoffs(2, [0, 0, 1, 0, 0]) == 2
+assert find_dayoffs(1, [0, 0, 1, 0]) == 4
+assert find_dayoffs(3, [0, 0, 1, 0, 0]) == 0
+
+
+def find_dayoffs_success(k: int, days: list[int]) -> int:
     begin = 0
     res = 0
 
@@ -24,8 +33,3 @@ def find_dayoffs(k: int, days: list[int]) -> int:
             res += window_size - k + 1
 
     return res
-
-
-assert find_dayoffs(2, [0, 0, 1, 0, 0]) == 2
-assert find_dayoffs(1, [0, 0, 1, 0]) == 4
-assert find_dayoffs(3, [0, 0, 1, 0, 0]) == 0

@@ -18,7 +18,7 @@
 # ]) = 16
 
 
-def max_dead_sum(board: list[int]): ...
+def max_dead_sum(board: list[int]) -> int: ...
 
 
 assert max_dead_sum([[1, 2, 3], [3, 4, 1], [3, 5, 2]]) == 16
