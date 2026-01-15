@@ -1,6 +1,7 @@
-import "sort"
+package helpers
+import "slices"
 
-array := [][]int{
+var array = [][]int{
     {1, 2},
     {3, 4},
     {5, 6},

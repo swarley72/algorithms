@@ -1,4 +1,18 @@
-package helpers
+package main
+
+import "fmt"
+
+func main() {
+	set := NewSet[int]()
+	set.Add(1)
+	has := set.Has(1)
+
+	fmt.Println(has)
+	set.Remove(1)
+
+	fmt.Println(has)
+
+}
 
 type Set[T comparable] map[T]struct{}
 
